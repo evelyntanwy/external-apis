@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 
 import { getWelcome } from "../api";
 import Forms from "./Forms";
+// import Cat from "./Cat";
+import Recipes from "./Recipes";
 
 function App() {
   const [welcomeStatement, setWelcomeStatement] = useState("");
@@ -22,7 +24,10 @@ function App() {
       <h1>Kia Ora!</h1>
       <h2>{welcomeStatement}</h2>
       <Forms />
+      <Recipes />
+
       <p></p>
+
       <div className="cat">
         <div className="ear"></div>
         <div className="eye"></div>

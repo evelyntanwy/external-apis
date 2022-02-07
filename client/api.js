@@ -17,3 +17,7 @@ export function getCat() {
 export function getNasa() {
   return request.get("/api/v1/nasa").then((response) => response.body);
 }
+
+export function getRecipes() {
+  return request.get("/api/v1/recipes").then((response) => response.body);
+}

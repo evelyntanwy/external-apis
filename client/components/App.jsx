@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { getWelcome } from "../api";
-import Choice from "./Choice";
-// import Person from "./Person";
 import Forms from "./Forms";
-// import { Routes, Route } from "react-router-dom";
 
 function App() {
   const [welcomeStatement, setWelcomeStatement] = useState("");
@@ -25,7 +22,6 @@ function App() {
       <h1>Kia Ora!</h1>
       <h2>{welcomeStatement}</h2>
       <Forms />
-      <Choice />
       <p></p>
       <div className="cat">
         <div className="ear"></div>

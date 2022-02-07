@@ -1,8 +1,3 @@
-import Choice from "./components/Choice";
-
-import React from "react";
-import ReactDOM from "react-dom";
-
 const tagsEl = document.getElementById("tags");
 const textarea = document.getElementById("textarea");
 
@@ -74,7 +69,3 @@ function highlightTag(tag) {
 function unHighlightTag(tag) {
   tag.classList.remove("highlight");
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  ReactDOM.render(<Choice />, document.getElementById("choice"));
-});

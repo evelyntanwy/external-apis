@@ -3,14 +3,12 @@ import React, { useState } from "react";
 import { getRecipes } from "../api";
 
 function Recipes() {
-  const [recipe, setRecipe] = useState(null);
+  const [recipe, setRecipe] = useState("");
 
   const handleClick = () => {
-    getRecipes();
-    console
-      .log("hello", recipe)
+    getRecipes()
       .then((recipe) => {
-        setRecipe(recipe.title);
+        setRecipe(recipe.hits[0].recipe.url);
         return null;
       })
       .catch((err) => {

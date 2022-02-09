@@ -2,8 +2,11 @@ import React, { useState, useEffect } from "react";
 
 import { getWelcome } from "../api";
 import Forms from "./Forms";
+import Find from "./Find";
 // import Cat from "./Cat";
 import Recipes from "./Recipes";
+// import SearchBar from "./SearchBar";
+// import RecipeData from "./Data.json";
 
 function App() {
   const [welcomeStatement, setWelcomeStatement] = useState("");
@@ -22,9 +25,12 @@ function App() {
   return (
     <div>
       <h1>Kia Ora!</h1>
-      <h2>{welcomeStatement}</h2>
+      <h2>Welcome to maKai guide 🍕🍜🍲🍣🥗</h2>
+      <h3>{welcomeStatement}</h3>
       <Forms />
+      <Find />
       <Recipes />
+      {/* <SearchBar placeholder="What to eat?.." data={RecipeData} /> */}
 
       <p></p>
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { getWelcome } from "../api";
 import Forms from "./Forms";
-import Find from "./Find";
+// import Find from "./Find";
 // import Cat from "./Cat";
 import Recipes from "./Recipes";
 // import SearchBar from "./SearchBar";
@@ -25,13 +25,11 @@ function App() {
   return (
     <div>
       <h1>Kia Ora!</h1>
-      <h2>Welcome to maKai guide 🍕🍜🍲🍣🥗</h2>
-      <h3>{welcomeStatement}</h3>
-      <Forms />
-      <Find />
+      <h2>Welcome to the māKai guide 🍕🍜🍲🍣🥗</h2>
+      {/* <h3>{welcomeStatement}</h3> */}
+      {/* 
+      <Forms /> */}
       <Recipes />
-      {/* <SearchBar placeholder="What to eat?.." data={RecipeData} /> */}
-
       <p></p>
 
       <div className="cat">

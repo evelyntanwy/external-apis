@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Form } from "react-bootstrap";
+import { Form, Container, Nav, Navbar, Carousel } from "react-bootstrap";
+// import Navbar from "react-bootstrap/Navbar";
 
 import { getRecipes } from "../api";
 
 function Recipes() {
-  const [recipe, setRecipe] = useState("");
+  const [recipe, setRecipe] = useState([]);
   const [search, setSearch] = useState("");
 
   // recipe.hits[0].recipe.label - Food title
@@ -12,9 +13,13 @@ function Recipes() {
   // recipe.hits[0].recipe.image - image
 
   const handleClick = () => {
+    // const typeSearch = recipe.map((elem) => elem.hits);
     getRecipes(search)
       .then((recipe) => {
-        setRecipe(recipe.hits[0].recipe.image);
+        // console.log("newRecipe", newRecipe);
+        // setRecipe(recipe.hits);
+        setRecipe(recipe.hits[0].recipe.label);
+        console.log("recipe", recipe);
         return null;
       })
       .catch((err) => {
@@ -25,35 +30,70 @@ function Recipes() {
 
   const handleChange = (evt) => {
     console.log(evt.target.value);
-    // const selected = evt.target.value;
     setSearch(evt.target.value);
-    //alert(`${evt.target.value}`);
     evt.preventDefault();
   };
 
   return (
     <>
+      <Navbar bg="dark" variant="dark" fixed="top">
+        <Container>
+          <Navbar.Brand href="#home">māKai</Navbar.Brand>
+          <Nav className="me-auto">
+            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="#search">Search</Nav.Link>
+            <Nav.Link href="#tags">Help</Nav.Link>
+          </Nav>
+        </Container>
+      </Navbar>
+      <Carousel>
+        <Carousel.Item interval={1000}>
+          <img
+            className="d-block w-100"
+            src="images/welcome.jpeg"
+            alt="First slide"
+          />
+          <Carousel.Caption>
+            <h3></h3>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src="images/fork-plate.jpeg"
+            alt="Second slide"
+          />
+
+          <Carousel.Caption>
+            <h3></h3>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src="images/burger.jpeg"
+            alt="Third slide"
+          />
+
+          <Carousel.Caption>
+            <h3></h3>
+          </Carousel.Caption>
+        </Carousel.Item>
+      </Carousel>
       <Form.Group controlId="foodSelection">
-        <Form.Control type="text" placeholder="Normal text" />
-        <Form.Label className="form-wording">Find the food</Form.Label>
-        {/* <select
-          className="form-select form-select-lg mb-3 mt-2"
-          id="dropdown-button-dark-example2"
-          aria-label=".form-select-lg example"
-          onChange={handleChange}
-        > */}
-        {/* <option defaultChecked="chicken">Please select the food</option>
-        <option value="Chicken">Chicken</option>
-        <option value="Pizza">Pizza</option>
-        <option value="Pasta">Pasta</option> */}
-        {/* </select> */}
+        <Form.Label id="search">Find the food</Form.Label>
         <input type="text" value={search} onChange={handleChange} />
         {/* <button type="submit">Fill ma belly</button> */}
         <button onClick={handleClick}>Fill ma belly</button>
       </Form.Group>
       <div>
+        {/* {recipe.map((elem) => {
+          return <li key={elem}>{elem.recipe}</li>;
+        })} */}
+        {/* {recipe.filter((elem) => {
+          return elem.label;
+        })} */}
         {recipe}
-        <br />
       </div>
     </>
   );

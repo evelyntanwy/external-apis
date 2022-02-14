@@ -249,3 +249,7 @@ textarea:focus {
 .form {
   margin: 50px;
 }
+
+.carousel-item {
+  text-align: center;
+}

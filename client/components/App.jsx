@@ -23,7 +23,7 @@ function App() {
   });
 
   return (
-    <div>
+    <div className="container">
       <h1>Kia Ora!</h1>
       <h2>Welcome to the māKai guide 🍕🍜🍲🍣🥗</h2>
       {/* <h3>{welcomeStatement}</h3> */}

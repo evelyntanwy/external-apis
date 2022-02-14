@@ -6,6 +6,8 @@ import { getRecipes } from "../api";
 
 function Recipes() {
   const [recipe, setRecipe] = useState([]);
+  const [url, setUrl] = useState([]);
+  const [foodImage, setFoodImage] = useState([]);
   const [search, setSearch] = useState("");
 
   // recipe.hits[0].recipe.label - Food title
@@ -13,13 +15,17 @@ function Recipes() {
   // recipe.hits[0].recipe.image - image
 
   const handleClick = () => {
-    // const typeSearch = recipe.map((elem) => elem.hits);
     getRecipes(search)
-      .then((recipe) => {
-        // console.log("newRecipe", newRecipe);
-        // setRecipe(recipe.hits);
-        setRecipe(recipe.hits[0].recipe.label);
-        console.log("recipe", recipe);
+      .then((resultsApi) => {
+        const resultsHits = resultsApi.hits;
+        const strHits = resultsHits.map((elem) => elem.recipe.label);
+        const strUrl = resultsHits.map((elem) => elem.recipe.url);
+        const strFoodImage = resultsHits.map((elem) => elem.recipe.image);
+
+        setRecipe(strHits);
+        setUrl(strUrl);
+        setFoodImage(strFoodImage);
+
         return null;
       })
       .catch((err) => {
@@ -49,9 +55,11 @@ function Recipes() {
       <Carousel>
         <Carousel.Item interval={1000}>
           <img
-            className="d-block w-100"
+            // className="d-block w-90"
             src="images/welcome.jpeg"
             alt="First slide"
+            width={1000}
+            height={500}
           />
           <Carousel.Caption>
             <h3></h3>
@@ -59,9 +67,11 @@ function Recipes() {
         </Carousel.Item>
         <Carousel.Item>
           <img
-            className="d-block w-100"
+            // className="d-block w-90"
             src="images/fork-plate.jpeg"
             alt="Second slide"
+            width={1000}
+            height={500}
           />
 
           <Carousel.Caption>
@@ -70,9 +80,11 @@ function Recipes() {
         </Carousel.Item>
         <Carousel.Item>
           <img
-            className="d-block w-100"
+            // className="d-block w-90"
             src="images/burger.jpeg"
             alt="Third slide"
+            width={1000}
+            height={500}
           />
 
           <Carousel.Caption>
@@ -81,19 +93,18 @@ function Recipes() {
         </Carousel.Item>
       </Carousel>
       <Form.Group controlId="foodSelection">
-        <Form.Label id="search">Find the food</Form.Label>
+        <Form.Label id="search">Find the food : </Form.Label>
         <input type="text" value={search} onChange={handleChange} />
-        {/* <button type="submit">Fill ma belly</button> */}
         <button onClick={handleClick}>Fill ma belly</button>
       </Form.Group>
       <div>
-        {/* {recipe.map((elem) => {
-          return <li key={elem}>{elem.recipe}</li>;
-        })} */}
-        {/* {recipe.filter((elem) => {
-          return elem.label;
-        })} */}
-        {recipe}
+        <br />
+        <ul>{recipe}</ul>
+        <ul>{url}</ul>
+        <ul>{foodImage}</ul>
+        <br />
+
+        {/* <span>{recipe}</span> */}
       </div>
     </>
   );

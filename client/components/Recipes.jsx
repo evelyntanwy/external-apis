@@ -1,5 +1,15 @@
 import React, { useState } from "react";
-import { Form, Container, Nav, Navbar, Carousel } from "react-bootstrap";
+import {
+  Form,
+  Container,
+  Nav,
+  Navbar,
+  Carousel,
+  Card,
+  Button,
+  ListGroup,
+  ListGroupItem,
+} from "react-bootstrap";
 // import Navbar from "react-bootstrap/Navbar";
 
 import { getRecipes } from "../api";
@@ -18,9 +28,17 @@ function Recipes() {
     getRecipes(search)
       .then((resultsApi) => {
         const resultsHits = resultsApi.hits;
-        const strHits = resultsHits.map((elem) => elem.recipe.label);
-        const strUrl = resultsHits.map((elem) => elem.recipe.url);
-        const strFoodImage = resultsHits.map((elem) => elem.recipe.image);
+        const strHits = resultsHits.map((elem) => (
+          <li key={recipe.label}>{elem.recipe.label}</li>
+        ));
+
+        const strUrl = resultsHits.map((elem) => (
+          <li key={recipe.url}>{elem.recipe.url}</li>
+        ));
+
+        const strFoodImage = resultsHits.map((elem) => (
+          <li key={recipe.image}>{elem.recipe.image}</li>
+        ));
 
         setRecipe(strHits);
         setUrl(strUrl);
@@ -59,7 +77,7 @@ function Recipes() {
             src="images/welcome.jpeg"
             alt="First slide"
             width={1000}
-            height={500}
+            height={400}
           />
           <Carousel.Caption>
             <h3></h3>
@@ -71,7 +89,7 @@ function Recipes() {
             src="images/fork-plate.jpeg"
             alt="Second slide"
             width={1000}
-            height={500}
+            height={400}
           />
 
           <Carousel.Caption>
@@ -84,7 +102,7 @@ function Recipes() {
             src="images/burger.jpeg"
             alt="Third slide"
             width={1000}
-            height={500}
+            height={400}
           />
 
           <Carousel.Caption>
@@ -98,11 +116,24 @@ function Recipes() {
         <button onClick={handleClick}>Fill ma belly</button>
       </Form.Group>
       <div>
-        <br />
-        <ul>{recipe}</ul>
+        <ul className="list-group list-group-horizontal">
+          <li className="list-group-item flex-fill">{recipe}</li>
+          <a className="list-group-item flex-fill" href={setUrl}>
+            {url}
+          </a>
+          {/* <li>
+            <a href={url}>Lets</a>
+          </li> */}
+        </ul>
+
+        {/* <div>
+          <ul>
+            <li>{recipe}</li>
+          </ul>
+        </div>
         <ul>{url}</ul>
         <ul>{foodImage}</ul>
-        <br />
+        <br /> */}
 
         {/* <span>{recipe}</span> */}
       </div>

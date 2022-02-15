@@ -16,8 +16,9 @@ import { getRecipes } from "../api";
 
 function Recipes() {
   const [recipe, setRecipe] = useState([]);
-  const [url, setUrl] = useState([]);
-  const [foodImage, setFoodImage] = useState([]);
+  // const [url, setUrl] = useState([]);
+  // const [splitUrl, setSplitUrl] = useState([]);
+  // const [foodImage, setFoodImage] = useState([]);
   const [search, setSearch] = useState("");
 
   // recipe.hits[0].recipe.label - Food title
@@ -25,27 +26,31 @@ function Recipes() {
   // recipe.hits[0].recipe.image - image
 
   const handleClick = () => {
+    console.log("clicked");
     getRecipes(search)
       .then((resultsApi) => {
-        const resultsHits = resultsApi.hits;
-        const strHits = resultsHits.map((elem) => (
-          <li key={recipe.label}>{elem.recipe.label}</li>
-        ));
-
-        const strUrl = resultsHits.map((elem) => (
-          <li key={recipe.url}>{elem.recipe.url}</li>
-        ));
-
-        const strFoodImage = resultsHits.map((elem) => (
-          <li key={recipe.image}>{elem.recipe.image}</li>
-        ));
-
-        setRecipe(strHits);
-        setUrl(strUrl);
-        setFoodImage(strFoodImage);
-
-        return null;
+        setRecipe(resultsApi.hits);
+        // const resultsHits = resultsApi.hits;
+        // console.table("results:", resultsHits);
+        // const strHits = resultsHits.map((elem) => {
+        //   console.log("Map", elem.recipe.url)
+        //   {elem.recipe.label}</li>
       })
+
+      // const urlArr = resultsHits.map((elem) => (
+      //   <li key={recipe.url}>{elem.recipe.url}</li>
+      // ));
+
+      // const strFoodImage = resultsHits.map((elem) => (
+      //   <li key={recipe.image}>{elem.recipe.image}</li>
+      // ));
+
+      // const splitUrl = urlArr.split(",");
+
+      // setUrl(urlArr);
+      // setSplitUrl(splitUrl);
+      // setFoodImage(strFoodImage);
+
       .catch((err) => {
         console.log(err.message);
       });
@@ -116,26 +121,12 @@ function Recipes() {
         <button onClick={handleClick}>Fill ma belly</button>
       </Form.Group>
       <div>
-        <ul className="list-group list-group-horizontal">
-          <li className="list-group-item flex-fill">{recipe}</li>
-          <a className="list-group-item flex-fill" href={setUrl}>
-            {url}
-          </a>
-          {/* <li>
-            <a href={url}>Lets</a>
-          </li> */}
-        </ul>
-
-        {/* <div>
-          <ul>
-            <li>{recipe}</li>
-          </ul>
-        </div>
-        <ul>{url}</ul>
-        <ul>{foodImage}</ul>
-        <br /> */}
-
-        {/* <span>{recipe}</span> */}
+        {recipe.map((elem) => {
+          return [
+            <p>{elem.recipe.label}</p>,
+            <a href={elem.recipe.url}>Let's go</a>,
+          ];
+        })}
       </div>
     </>
   );

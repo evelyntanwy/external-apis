@@ -3,13 +3,7 @@
 body {
   font-family: "Poppins", sans-serif;
   background-color: bisque;
-  margin: 50px;
 }
-
-/* img {
-  width: 100px;
-  height: 100px;
-} */
 
 button {
   display: inline-block;
@@ -32,7 +26,7 @@ button {
   height: 65px;
   width: 80px;
   border-radius: 0 80px 80px 0;
-  position: absolute;
+  position: fixed;
   bottom: 60px;
   right: 50px;
   display: block;
@@ -129,19 +123,6 @@ button {
   transform-origin: bottom right;
 }
 
-/* to finish up body patch */
-/* .patch {
-  background-color: whitesmoke;
-  height: 50px;
-  width: 30px;
-  position: absolute;
-  right: 95px;
-  bottom: 40px;
-  border-radius: 80px 80px 0 0;
-  animation: sleep 2s infinite;
-  transform-origin: bottom right;
-} */
-
 @keyframes sleep {
   50% {
     transform: scale(0.9, 1.05);
@@ -186,6 +167,7 @@ button {
     transform: scale(1.6);
   }
 }
+
 /* ------------------------------------- */
 
 * {
@@ -210,11 +192,12 @@ button {
   text-align: center;
 } */
 
-.container {
+.choice-container {
   width: 500px;
   gap: 10px 20px; /* row-gap column gap */
   row-gap: 10px;
   column-gap: 20px;
+  margin: 50px;
 }
 
 textarea {
@@ -224,9 +207,9 @@ textarea {
   width: 60%;
   height: 50px;
   font-family: inherit;
-  padding: 10px;
+  padding: 5px;
   margin: 0 0 20px;
-  font-size: 16px;
+  font-size: 15px;
   margin: 50px;
 }
 
@@ -240,7 +223,7 @@ textarea:focus {
   color: #fff;
   border-radius: 50px;
   padding: 10px 20px;
-  margin: 0 5px 10px 0;
+  margin: 0 50px 10px 0;
   font-size: 14px;
   display: inline-block;
 }
@@ -256,3 +239,28 @@ textarea:focus {
 .carousel-item {
   text-align: center;
 }
+
+.card-container {
+  display: flex;
+  justify-content: center;
+}
+
+/* .card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: calc(100% / 4);
+  height: calc(100 / 5);
+  display: flex;
+  gap: 1em;
+  flex-direction: column;
+  width: min(95%, 45rem);
+  margin: 0 auto;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card-render {
+  padding: 2px 16px;
+} */

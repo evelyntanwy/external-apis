@@ -6,6 +6,8 @@ import {
   Navbar,
   Carousel,
   Card,
+  Row,
+  Col,
   Button,
   ListGroup,
   ListGroupItem,
@@ -120,14 +122,25 @@ function Recipes() {
         <input type="text" value={search} onChange={handleChange} />
         <button onClick={handleClick}>Fill ma belly</button>
       </Form.Group>
-      <div>
-        {recipe.map((elem) => {
-          return [
-            <p>{elem.recipe.label}</p>,
-            <a href={elem.recipe.url}>Let's go</a>,
-          ];
-        })}
-      </div>
+      <br />
+      <Row xs={1} md={4} className="g-4">
+        {recipe.map((elem) => (
+          <Col>
+            <Card>
+              <Card.Img variant="top" src={elem.recipe.image} />
+              <Card.Body>
+                <Card.Title>{elem.recipe.label}</Card.Title>
+                <a href={elem.recipe.url} target="_blank">
+                  <button type="button" class="btn btn-link">
+                    Let's go
+                  </button>
+                </a>
+                {/* <Button>{elem.recipe.url}</Button> */}
+              </Card.Body>
+            </Card>
+          </Col>
+        ))}
+      </Row>
     </>
   );
 }
